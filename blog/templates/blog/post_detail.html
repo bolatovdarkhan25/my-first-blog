@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-primary"><h1>{{ post.title }}</h1></li>
+            <li class="list-group-item"><p>{{ post.text }}</p></li>
+            {% if post.published_date %}
+                <li class="list-group-item"><p>Published date: {{ post.published_date }}</p></li>
+            {% else %}
+                <li class="list-group-item"><p>Created date: {{ post.created_date }}</p></li>
+            {% endif %}
+        </ul>
+    <br>
+    </div>
+    <a href="{% url 'edit_post' pk=post.pk %}" style="margin-left: 165px;"><button class="btn btn-primary">Edit post</button></a>
+    {% if not post.published_date %}
+        <a href="{% url 'publish_post' pk=post.pk %}" style="margin-left: 400px;"><button class="btn btn-warning">Publish</button></a>
+        <a href="{% url 'delete_post' pk=post.pk %}"><button class="btn btn-danger" style="margin-left: 459px;">Delete</button></a>
+    {% else %}
+        <a href="{% url 'delete_post' pk=post.pk %}"><button class="btn btn-danger" style="margin-left: 941px;">Delete</button></a>
+    {% endif %}
+{% endblock %}

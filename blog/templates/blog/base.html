@@ -11,7 +11,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav" style="margin-left: 400px;">
+    <ul class="navbar-nav" style="margin-left: 200px;">
       <li class="nav-item">
         <a class="nav-link" href="{% url 'post_list' %}" style="font-size: 30px;">Home<span class="sr-only"></span></a>
       </li>
@@ -19,10 +19,17 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'draft_posts' %}" style="font-size: 30px; margin-left: 370px;">Drafts</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}" style="font-size: 30px; margin-left: 370px;">Logout</a>
+      </li>
+        {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}" style="font-size: 30px; margin-left: 370px;">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'register' %}" style="font-size: 30px; margin-left: 370px;">Register</a>
+      </li>
         {% endif %}
-{#      <li class="nav-item">#}
-{#        <a class="nav-link" href="#" style="font-size: 30px; margin-left: 100px;">Pricing</a>#}
-{#      </li>#}
     </ul>
   </div>
 </nav>

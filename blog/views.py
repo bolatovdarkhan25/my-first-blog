@@ -10,7 +10,7 @@ def for_base(request):
 
 
 def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     user = request.user
     return render(request, 'blog/post_list.html', {'posts': posts, 'user': user})
 
@@ -24,7 +24,7 @@ def make_post(request):
             post.author = request.user
             post.save()
 
-            return redirect('/')
+            return redirect('post_done')
     else:
         form = PostForm()
         return render(request, 'blog/make_post.html', {'form': form})
@@ -32,11 +32,11 @@ def make_post(request):
 
 def post_details(request, pk):
     post = Post.objects.get(pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+    return render(request, 'blog/post_detail.html', {'post': post, 'user': request.user})
 
 
 def draft_posts(request):
-    posts = Post.objects.filter(published_date=None).order_by('created_date')
+    posts = Post.objects.filter(published_date=None).order_by('-created_date')
     return render(request, 'blog/drafts.html', {'posts': posts})
 
 
@@ -67,3 +67,7 @@ def delete_post(request, pk):
     post = Post.objects.get(pk=pk)
     post.delete()
     return redirect('/')
+
+
+def post_done_view(request):
+    return render(request, 'blog/post_done.html')

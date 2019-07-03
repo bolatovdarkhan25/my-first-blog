@@ -15,11 +15,13 @@
         </ul>
     <br>
     </div>
+    {% if user == post.author %}
     <a href="{% url 'edit_post' pk=post.pk %}" style="margin-left: 165px;"><button class="btn btn-primary">Edit post</button></a>
     {% if not post.published_date %}
         <a href="{% url 'publish_post' pk=post.pk %}" style="margin-left: 400px;"><button class="btn btn-warning">Publish</button></a>
         <a href="{% url 'delete_post' pk=post.pk %}"><button class="btn btn-danger" style="margin-left: 459px;">Delete</button></a>
     {% else %}
         <a href="{% url 'delete_post' pk=post.pk %}"><button class="btn btn-danger" style="margin-left: 941px;">Delete</button></a>
+    {% endif %}
     {% endif %}
 {% endblock %}

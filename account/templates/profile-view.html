@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2 style="color: darkslategray;"><strong>Your profile</strong></h2>
+        <table class="table table-sm">
+          <tbody>
+            <tr>
+                <td><p style="color: darkgrey">Username:</p></td>
+                <td><p style="color: black">{{ user.username }}</p></td>
+            </tr>
+            <tr>
+                <td><p style="color: darkgrey">First name:</p></td>
+                <td><p style="color: black">{{ user.first_name }}</p></td>
+            </tr>
+            <tr>
+                <td><p style="color: darkgrey">Last name:</p></td>
+                <td><p style="color: black">{{ user.last_name }}</p></td>
+            </tr>
+            <tr>
+                <td><p style="color: darkgrey">city:</p></td>
+                <td><p style="color: black">{{ user.city }}</p></td>
+            </tr>
+            <tr>
+                <td><p style="color: darkgrey">phone:</p></td>
+                <td><p style="color: black">{{ user.phone }}</p></td>
+            </tr>
+          </tbody>
+        </table>
+    <button class="btn btn-primary"><a href="{% url 'post_list' %}" style="color: white;">Home</a></button>
+    <br>
+    <br>
+    </div>
+{% endblock %}

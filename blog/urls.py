@@ -10,5 +10,7 @@ urlpatterns = [
     path('post/<pk>/publish/', views.publish_post, name='publish_post'),
     path('post/<pk>/edit/', views.edit_post, name='edit_post'),
     path('post/<pk>/delete/', views.delete_post, name='delete_post'),
-    path('post/done/', views.post_done_view, name='post_done')
+    path('post/done/', views.post_done_view, name='post_done'),
+    path('post/comment/<pk>/delete/', views.delete_comment, name='delete_comment'),
+    path('post/<pk>/move/to/drafts/', views.move_to_draft, name='move_to_drafts')
 ]

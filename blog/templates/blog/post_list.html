@@ -6,7 +6,12 @@
     {% for post in posts %}
         <div class="container">
     <li class="list-group-item">
-        <h5 style="color: #404040;">{{ post.author.first_name }} {{ post.author.last_name }}</h5>
+        <a href="{% url 'post_details' pk=post.pk %}">
+                <button class="btn btn-primary" style="height: 39px;">
+                        <h5>{{ post.title }}</h5>
+                </button>
+        </a>
+        <p></p>
         <a href="{% url 'show_profile' pk=post.author.pk %}"><h6 style="color: grey;">@{{ post.author.username }}</h6></a><br>
         <p>{{ post.text }}</p>
             {% if post.published_date %}

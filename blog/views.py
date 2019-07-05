@@ -101,3 +101,49 @@ def move_to_draft(request, pk):
     post.published_date = None
     post.save()
     return redirect('post_done')
+
+
+def add_like(request, pk):
+    post = Post.objects.get(pk=pk)
+    post.like += 1
+    post.like_activated_author.append(request.user.username)
+    post.save()
+
+    return redirect('post_details', pk=pk)
+
+
+def remove_like(request, pk):
+    post = Post.objects.get(pk=pk)
+    post.like -= 1
+    post.like_activated_author.remove(request.user.username)
+    post.save()
+
+    return redirect('post_details', pk=pk)
+
+
+def add_like_to_comment(request, pk):
+    comment = Comments.objects.get(post=Post.objects.get(pk=pk))
+    comment.like += 1
+    comment.like_activated_author.append(request.user.username)
+    comment.save()
+
+    return redirect('post_details', pk=pk)
+
+
+def remove_like_from_comment(request, pk):
+    comment = Comments.objects.get(post=Post.objects.get(pk=pk))
+    comment.like -= 1
+    comment.like_activated_author.remove(request.user.username)
+    comment.save()
+
+    return redirect('post_details', pk=pk)
+
+
+def post_likes(request, pk):
+    post = Post.objects.get(pk=pk)
+    return render(request, 'blog/post_likes.html', {'post': post})
+
+
+def comment_likes(request, pk):
+    comment = Comments.objects.get(post=Post.objects.get(pk=pk))
+    return render(request, 'blog/comment_likes.html', {'comment': comment})

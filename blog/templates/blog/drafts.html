@@ -7,7 +7,7 @@
         {% if user == post.author %}
         <div class="container">
             <ul class="list-group">
-                <a href="{% url 'post_details' pk=post.pk %}" class="list-group-item list-group-item-action list-group-item-primary"><h1>{{ post.author }}</h1></a>
+                <a href="{% url 'post_details' pk=post.pk %}" class="list-group-item list-group-item-action list-group-item-primary"><h1>{{ post.title }}</h1></a>
                 <li class="list-group-item"><p class="tt">{{ post.text }}</p></li>
                 <li class="list-group-item"><p>Created date: {{ post.created_date }}</p></li>
             </ul>
